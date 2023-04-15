@@ -97,6 +97,12 @@ cases = readline().to_i
   as = ris
   la, ra, lb, rb = ris
 
+  cul_a = [0]
+  for i in 0...n
+    cul_a << cul_a[i] + as[i]
+  end
+ppd cul_a
+
   sum = 0
   if ra < lb
     # 111122211111111
@@ -112,7 +118,8 @@ ppd a, b
       break if a == b
     end
 ppd a, b
-    sum = as[0..a-1].sum
+    # sum = as[0..a-1].sum
+    sum = cul_a[a] - cul_a[0]
   elsif rb < la
     # 111122211111111
     #          aaaa
@@ -124,17 +131,20 @@ ppd a, b
       b += 1 if a < b
       break if a == b
     end
-    sum = as[a-1..-1].sum
+    # sum = as[a-1..-1].sum
+    sum = cul_a[n] - cul_a[a-1]
   elsif ra == lb
     # 12345678
     # aaaaa
     #     bbbb
-    sum = as[0..ra-1].sum
+    # sum = as[0..ra-1].sum
+    sum = cul_a[ra] - cul_a[0]
   elsif rb == la
     # 12345678
     #     aaaa
     # bbbbb
-    sum = as[la-1..-1].sum
+    # sum = as[la-1..-1].sum
+    sum = cul_a[n] - cul_a[la-1]
   else
     # 12345678
     # aaaaa
@@ -142,10 +152,12 @@ ppd a, b
     # a4 -> b5
     # a5 -> b4 or b6の和が多い側
     for i in 0...n
-      sum_l = as[0..i].sum
-      sum_r = as[i...n].sum
-      sum_i = [sum_l, sum_r].min
+      # sum_l = as[0..i].sum
+      # sum_r = as[i...n].sum
+      sum_l = cul_a[i+1] - cul_a[0]
+      sum_r = cul_a[n] - cul_a[i]
 
+      sum_i = [sum_l, sum_r].min
 ppd "#{i}, #{sum_i}"
       sum = [sum, sum_i].max
     end
