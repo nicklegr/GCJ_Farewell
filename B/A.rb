@@ -134,14 +134,14 @@ ppd cul_a
     # 12345678
     # aaaaa
     #     bbbb
-    # sum = as[0..ra].sum
-    sum = cul_a[ra+1] - cul_a[0]
+    # sum = as[0..ra-1].sum
+    sum = cul_a[ra] - cul_a[0]
   elsif rb == la
     # 12345678
     #     aaaa
     # bbbbb
-    # sum = as[la..-1].sum
-    sum = cul_a[n] - cul_a[la]
+    # sum = as[la-1..-1].sum
+    sum = cul_a[n] - cul_a[la-1]
   else
     # 12345678
     # aaaaa
