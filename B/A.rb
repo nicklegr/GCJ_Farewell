@@ -110,14 +110,11 @@ ppd cul_a
     #          bbbb
     a = ra
     b = lb
-ppd a, b
     loop do
       a += 1 if a < b
       b -= 1 if a < b
-ppd a, b
       break if a == b
     end
-ppd a, b
     # sum = as[0..a-1].sum
     sum = cul_a[a] - cul_a[0]
   elsif rb < la
@@ -127,8 +124,8 @@ ppd a, b
     a = la
     b = rb
     loop do
-      a -= 1 if a < b
-      b += 1 if a < b
+      a -= 1 if b < a
+      b += 1 if b < a
       break if a == b
     end
     # sum = as[a-1..-1].sum
