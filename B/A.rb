@@ -148,7 +148,7 @@ ppd cul_a
     #    bbbbb
     # a4 -> b5
     # a5 -> b4 or b6の和が多い側
-    for i in 0...n
+    for i in la-1..ra-1
       # sum_l = as[0..i].sum
       # sum_r = as[i...n].sum
       sum_l = cul_a[i+1] - cul_a[0]
@@ -183,3 +183,7 @@ aaaaa
    bbbbb
 a4 -> b5
 a5 -> b4 or b6の和が多い側
+
+119111111
+aaaaa
+   bbbbbb
