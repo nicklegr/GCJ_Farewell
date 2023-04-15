@@ -143,19 +143,38 @@ ppd cul_a
     # sum = as[la-1..-1].sum
     sum = cul_a[n] - cul_a[la-1]
   else
-    # 12345678
-    # aaaaa
-    #    bbbbb
-    # a4 -> b5
-    # a5 -> b4 or b6の和が多い側
-    for i in la-1..ra-1
-      # sum_l = as[0..i].sum
-      # sum_r = as[i...n].sum
-      sum_l = cul_a[i+1] - cul_a[0]
-      sum_r = cul_a[n] - cul_a[i]
+    for i in la..ra
+      # sum_l = as[0..i-1].sum
+      # sum_r = as[i-1...n].sum
+      sum_l = cul_a[i] - cul_a[0]
+      sum_r = cul_a[n] - cul_a[i-1]
 
-      sum_i = [sum_l, sum_r].min
-ppd "#{i}, #{sum_i}"
+      if lb < i && i < rb
+        # 12345678
+        # aaaaa
+        #    bbbbb
+        #     ^
+        sum_i = [sum_l, sum_r].min
+        putsd "pat a: #{sum_i}"
+      elsif lb < i
+        # 12345678
+        # aaaaa
+        #   bbb
+        #     ^
+        sum_i = sum_r
+        putsd "pat b: #{sum_i}"
+      elsif i < rb
+        # 12345678
+        # aaaaa
+        #     bbb
+        #     ^
+        sum_i = sum_l
+        putsd "pat c: #{sum_i}"
+      else
+        raise
+      end
+
+putsd "#{i}, #{sum_i}"
       sum = [sum, sum_i].max
     end
   end
@@ -187,3 +206,13 @@ a5 -> b4 or b6の和が多い側
 119111111
 aaaaa
    bbbbbb
+
+19151111
+aaaaaa
+    bbbb
+-> a5 == 17
+
+12345678
+aaaaa
+  bbb
+    ^
