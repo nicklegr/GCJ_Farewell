@@ -123,25 +123,15 @@ ppd cul_a
     # bbbbbb
     a = la
     b = rb
+    putsd "#{a} #{b}"
     loop do
       a -= 1 if b < a
       b += 1 if b < a
+      putsd "#{a} #{b}"
       break if a == b
     end
     # sum = as[a-1..-1].sum
     sum = cul_a[n] - cul_a[a-1]
-  elsif ra == lb
-    # 12345678
-    # aaaaa
-    #     bbbb
-    # sum = as[0..ra-1].sum
-    sum = cul_a[ra] - cul_a[0]
-  elsif rb == la
-    # 12345678
-    #     aaaa
-    # bbbbb
-    # sum = as[la-1..-1].sum
-    sum = cul_a[n] - cul_a[la-1]
   else
     for i in la..ra
       # sum_l = as[0..i-1].sum
@@ -212,7 +202,7 @@ aaaaaa
     bbbb
 -> a5 == 17
 
-12345678
+11911111
 aaaaa
   bbb
     ^
