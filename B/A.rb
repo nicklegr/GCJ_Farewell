@@ -121,9 +121,9 @@ ppd cul_a
     b = lb
     puts "ra < lb: #{a} #{b}" if debug
     loop do
-      a += 1 if a < b
-      b -= 1 if a < b
-      break if a == b
+      a += 1 if a < b-1
+      b -= 1 if a+1 < b
+      break if (a-b).abs == 1
     end
     # sum = as[0..a-1].sum
     sum = cul_a[a] - cul_a[0]
@@ -135,10 +135,9 @@ ppd cul_a
     b = rb
     puts "rb < la: #{a} #{b}" if debug
     loop do
-      a -= 1 if b < a
-      b += 1 if b < a
-      putsd "#{a} #{b}"
-      break if a == b
+      a -= 1 if b+1 < a
+      b += 1 if b < a-1
+      break if (a-b).abs == 1
     end
     # sum = as[a-1..-1].sum
     sum = cul_a[n] - cul_a[a-1]
