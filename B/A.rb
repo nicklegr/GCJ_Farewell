@@ -97,6 +97,15 @@ cases = readline().to_i
   as = ris
   la, ra, lb, rb = ris
 
+debug = false
+# debug = true if case_index == 26
+
+  if debug
+    pp n
+    pp as
+    pp la,ra,lb,rb
+  end
+
   cul_a = [0]
   for i in 0...n
     cul_a << cul_a[i] + as[i]
@@ -110,6 +119,7 @@ ppd cul_a
     #          bbbb
     a = ra
     b = lb
+    puts "ra < lb: #{a} #{b}" if debug
     loop do
       a += 1 if a < b
       b -= 1 if a < b
@@ -123,7 +133,7 @@ ppd cul_a
     # bbbbbb
     a = la
     b = rb
-    putsd "#{a} #{b}"
+    puts "rb < la: #{a} #{b}" if debug
     loop do
       a -= 1 if b < a
       b += 1 if b < a
@@ -145,26 +155,26 @@ ppd cul_a
         #    bbbbb
         #     ^
         sum_i = [sum_l, sum_r].min
-        putsd "pat a: #{sum_i}"
+        puts "pat a: #{sum_i}" if debug
       elsif lb < i
         # 12345678
         # aaaaa
         #   bbb
         #     ^
         sum_i = sum_r
-        putsd "pat b: #{sum_i}"
+        puts "pat b: #{sum_i}" if debug
       elsif i < rb
         # 12345678
         # aaaaa
         #     bbb
         #     ^
         sum_i = sum_l
-        putsd "pat c: #{sum_i}"
+        puts "pat c: #{sum_i}" if debug
       else
         raise
       end
 
-putsd "#{i}, #{sum_i}"
+puts "#{i}, #{sum_i}" if debug
       sum = [sum, sum_i].max
     end
   end
