@@ -94,16 +94,18 @@ cases = readline().to_i
 
 (1 .. cases).each do |case_index|
   digits = ris
+  digits.map!{|e| e.to_s}
+
   cnt = ri
   words = rws(cnt)
 
   collide = false
   hash = {}
   words.each do |word|
-    enc = word.each_char.to_a.map do |e|
-      digits[e.ord - "A".ord]
+    enc = ""
+    word.each_char do |e|
+      enc += digits[e.ord - "A".ord]
     end
-    enc = enc.join("")
 putsd enc
     if hash.key?(enc)
       collide = true
