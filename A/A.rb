@@ -93,8 +93,8 @@ t_start = Time.now
 cases = readline().to_i
 
 (1 .. cases).each do |case_index|
-  digits = ris
-  digits.map!{|e| e.to_s}
+  digits = rss
+  digits_str = digits.join
 
   cnt = ri
   words = rws(cnt)
@@ -102,10 +102,7 @@ cases = readline().to_i
   collide = false
   hash = {}
   words.each do |word|
-    enc = ""
-    word.each_char do |e|
-      enc += digits[e.ord - "A".ord]
-    end
+    enc = word.tr("A-Z", digits_str)
 putsd enc
     if hash.key?(enc)
       collide = true
